@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhysioElite – Advanced Physiotherapy Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--teal:#0d7c66;--teal-light:#0fa888;--teal-pale:#e6f7f3;
+  --gold:#c9a84c;--white:#fff;--gray-50:#f8fafc;--gray-100:#f1f5f9;
+  --gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#1e293b;background:#fff;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:38px;height:38px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.logo-text{font-size:18px;font-weight:700;color:#fff}
+.logo-text span{color:var(--teal-light)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--teal);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--teal-light)}
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:70px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(13,124,102,0.18) 0%,transparent 70%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-inner{max-width:1200px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(13,124,102,0.2);border:1px solid rgba(13,124,102,0.4);color:var(--teal-light);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:1.5rem;text-transform:uppercase}
+.hero-badge span{width:6px;height:6px;background:var(--teal-light);border-radius:50%;display:inline-block}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--teal-light)}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:2.5rem;max-width:480px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--teal);color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.3);transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.hero-stat{text-align:center;padding:1.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius)}
+.hero-stat-num{font-size:2rem;font-weight:700;color:#fff}
+.hero-stat-num span{color:var(--teal-light)}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px}
+.hero-3d{width:100%;height:380px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);position:relative;background:#060e1c}
+.hero-3d canvas{display:block;width:100%!important;height:100%!important}
+.hero-3d-label{position:absolute;bottom:16px;left:16px;right:16px;display:flex;justify-content:space-between;pointer-events:none}
+.hero-3d-badge{background:rgba(10,22,40,0.8);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;backdrop-filter:blur(8px)}
+section{padding:6rem 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:var(--teal-pale);color:var(--teal);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:1rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;color:#0a1628;line-height:1.2;margin-bottom:1rem}
+.section-sub{font-size:17px;color:var(--gray-600);line-height:1.7;max-width:580px}
+.center{text-align:center}
+.center .section-sub{margin:0 auto 3rem}
+/* SERVICES */
+.services-bg{background:var(--gray-50)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem}
+.service-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:0 0 1.5rem;overflow:hidden;transition:all .25s}
+.service-card:hover{box-shadow:0 8px 30px rgba(13,124,102,0.12);transform:translateY(-3px)}
+.svc-3d{width:100%;height:160px;display:block}
+.svc-3d canvas{width:100%!important;height:100%!important;display:block}
+.svc-body{padding:1.25rem 1.5rem 0}
+.service-card h3{font-size:17px;font-weight:600;color:#0a1628;margin-bottom:.5rem}
+.service-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+/* WHY */
+.why-bg{background:var(--navy)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.why-3d{width:100%;height:360px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1)}
+.why-3d canvas{width:100%!important;height:100%!important}
+.why-list{display:flex;flex-direction:column;gap:1.5rem}
+.why-item{display:flex;gap:1.25rem;align-items:flex-start}
+.why-num{font-size:1.8rem;font-weight:700;color:var(--teal-light);opacity:.5;line-height:1;min-width:36px}
+.why-item h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:.35rem}
+.why-item p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65}
+.why-title{color:#fff}
+.why-sub{color:rgba(255,255,255,0.55)}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:3rem}
+.team-card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;overflow:hidden;transition:all .25s}
+.team-card:hover{box-shadow:0 10px 40px rgba(0,0,0,0.1);transform:translateY(-4px)}
+.team-3d{width:100%;height:200px}
+.team-3d canvas{width:100%!important;height:100%!important;display:block}
+.team-info{padding:1.5rem}
+.team-info h3{font-size:17px;font-weight:600;color:#0a1628;margin-bottom:4px}
+.team-info .role{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:8px}
+.team-info .bio{font-size:13px;color:var(--gray-600);line-height:1.6}
+.team-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.team-tag{background:var(--teal-pale);color:var(--teal);font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px}
+/* TESTIMONIALS */
+.testi-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.testi-3d{width:100%;height:340px;border-radius:16px;overflow:hidden;border:1px solid var(--gray-200)}
+.testi-3d canvas{width:100%!important;height:100%!important;display:block}
+.testi-stack{display:flex;flex-direction:column;gap:1.25rem}
+.testi-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.5rem;transition:box-shadow .25s}
+.testi-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.07)}
+.stars{color:var(--gold);font-size:14px;margin-bottom:.65rem}
+.testi-text{font-size:14px;color:var(--gray-600);line-height:1.7;font-style:italic;margin-bottom:1rem}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px;flex-shrink:0}
+.testi-name{font-size:13px;font-weight:600;color:#0a1628}
+.testi-detail{font-size:11px;color:var(--gray-400);margin-top:1px}
+/* EDUCATION */
+.edu-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.edu-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all .25s;cursor:pointer}
+.edu-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.edu-3d{width:100%;height:140px}
+.edu-3d canvas{width:100%!important;height:100%!important;display:block}
+.edu-body{padding:1.25rem}
+.edu-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--teal);margin-bottom:.5rem}
+.edu-card h3{font-size:15px;font-weight:600;color:#0a1628;line-height:1.4;margin-bottom:.6rem}
+.edu-card p{font-size:13px;color:var(--gray-600);line-height:1.6}
+.edu-read{font-size:13px;font-weight:600;color:var(--teal);margin-top:.75rem;display:inline-flex;align-items:center;gap:4px}
+/* BOOKING */
+.booking-bg{background:linear-gradient(135deg,var(--navy) 0%,#0d2244 100%)}
+.booking-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;margin-top:3rem}
+.booking-3d{width:100%;height:320px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1)}
+.booking-3d canvas{width:100%!important;height:100%!important;display:block}
+.booking-form{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group.full{grid-column:span 2}
+.form-group label{font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.5px}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;padding:11px 14px;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border .2s;width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal-light)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+.form-group select option{background:var(--navy);color:#fff}
+.form-submit{margin-top:1.5rem;text-align:center}
+footer{background:#060d1a;padding:4rem 2rem 2rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;margin-top:1rem}
+.footer-col h4{font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:1.25rem}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:.75rem;transition:color .2s}
+.footer-col a:hover{color:var(--teal-light)}
+.footer-contact{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.9}
+.footer-contact strong{color:rgba(255,255,255,0.7);display:block;margin-top:.5rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.3)}
+.accreditations{display:flex;gap:1rem}
+.accred-badge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 12px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:.5px}
+@media(max-width:768px){
+  .hero-inner,.why-layout,.testi-layout,.booking-layout,.footer-grid{grid-template-columns:1fr}
+  .hero-3d,.why-3d,.testi-3d,.booking-3d{height:240px}
+  .nav-links{display:none}
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 2 .8 3.8 2 5l5 8 5-8c1.2-1.2 2-3 2-5 0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+      <span class="logo-text">Physio<span>Elite</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#team">Our Team</a>
+      <a href="#education">Resources</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#booking" class="nav-cta">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span></span>ISO 9001 Certified Clinic</div>
+      <h1>Advanced Physiotherapy <em>Excellence</em> You Deserve</h1>
+      <p class="hero-sub">A multidisciplinary team of internationally trained physiotherapists delivering evidence-based rehabilitation, pain management, and performance optimisation.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Book Consultation</a>
+        <a href="#team" class="btn-outline">Meet Our Specialists</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">15<span>+</span></div><div class="hero-stat-label">Years of Excellence</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">8<span>K+</span></div><div class="hero-stat-label">Patients Recovered</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">12</div><div class="hero-stat-label">Specialist Therapists</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-3d"><canvas id="c-hero"></canvas></div>
+      <div class="hero-3d-label">
+        <span class="hero-3d-badge">Full-body biomechanical model</span>
+        <span class="hero-3d-badge">★ 4.9 / 5.0 Rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-bg">
+  <div class="section-inner">
+    <div class="center">
+      <span class="section-tag">What We Treat</span>
+      <h2 class="section-title">Comprehensive Physiotherapy Services</h2>
+      <p class="section-sub">From acute injury rehabilitation to long-term chronic condition management — evidence-based care at every stage.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="svc-3d"><canvas id="c-sports"></canvas></div><div class="svc-body"><h3>Sports Injury Rehabilitation</h3><p>Specialised protocols for athletes recovering from ligament, tendon, and muscle injuries with performance-focused goals.</p></div></div>
+      <div class="service-card"><div class="svc-3d"><canvas id="c-surgical"></canvas></div><div class="svc-body"><h3>Post-Surgical Recovery</h3><p>Structured post-operative care following orthopaedic, spinal, and joint replacement surgeries to restore full function.</p></div></div>
+      <div class="service-card"><div class="svc-3d"><canvas id="c-spine"></canvas></div><div class="svc-body"><h3>Spinal & Posture Correction</h3><p>Assessment and treatment of scoliosis, kyphosis, disc herniation, sciatica, and chronic back and neck conditions.</p></div></div>
+      <div class="service-card"><div class="svc-3d"><canvas id="c-pain"></canvas></div><div class="svc-body"><h3>Chronic Pain Management</h3><p>Multimodal approach combining manual therapy, exercise, and pain neuroscience education for lasting relief.</p></div></div>
+      <div class="service-card"><div class="svc-3d"><canvas id="c-paeds"></canvas></div><div class="svc-body"><h3>Paediatric Physiotherapy</h3><p>Child-centred rehabilitation for developmental conditions, cerebral palsy, torticollis, and paediatric injuries.</p></div></div>
+      <div class="service-card"><div class="svc-3d"><canvas id="c-neuro"></canvas></div><div class="svc-body"><h3>Neurological Rehabilitation</h3><p>Specialist programmes for stroke recovery, Parkinson's disease, multiple sclerosis, and vestibular disorders.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-bg">
+  <div class="section-inner">
+    <div>
+      <span class="section-tag" style="background:rgba(13,124,102,0.2);color:var(--teal-light)">Our Advantage</span>
+      <h2 class="section-title why-title">Why Patients Choose PhysioElite</h2>
+      <p class="section-sub why-sub">International-grade standards combined with deeply personalised care.</p>
+    </div>
+    <div class="why-layout">
+      <div class="why-3d"><canvas id="c-why"></canvas></div>
+      <div class="why-list">
+        <div class="why-item"><div class="why-num">01</div><div><h3>Evidence-Based Protocols</h3><p>Every treatment plan is grounded in the latest peer-reviewed research and international clinical guidelines.</p></div></div>
+        <div class="why-item"><div class="why-num">02</div><div><h3>Advanced Diagnostics</h3><p>State-of-the-art biomechanical analysis, gait assessment, and digital postural screening technology.</p></div></div>
+        <div class="why-item"><div class="why-num">03</div><div><h3>Internationally Trained Team</h3><p>Our therapists hold postgraduate qualifications from leading institutions across Europe, UK, and Australia.</p></div></div>
+        <div class="why-item"><div class="why-num">04</div><div><h3>Personalised Care Plans</h3><p>No two patients are the same. Every plan is tailored to your unique anatomy, lifestyle, and recovery goals.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="center">
+      <span class="section-tag">Our Specialists</span>
+      <h2 class="section-title">Meet the Clinical Team</h2>
+      <p class="section-sub">Highly qualified, empathetic professionals dedicated to your recovery and wellbeing.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-3d"><canvas id="c-t1"></canvas></div><div class="team-info"><h3>Dr. Sarah Mitchell</h3><div class="role">Clinical Director · MSc, MCSP</div><p class="bio">15 years in musculoskeletal physiotherapy. Trained at King's College London with expertise in complex spinal rehabilitation.</p><div class="team-tags"><span class="team-tag">Spinal</span><span class="team-tag">Sports</span><span class="team-tag">Research</span></div></div></div>
+      <div class="team-card"><div class="team-3d"><canvas id="c-t2"></canvas></div><div class="team-info"><h3>Dr. James Adeyemi</h3><div class="role">Sports Physiotherapist · DPT</div><p class="bio">Former physiotherapist for Premier League clubs. Specialises in ACL reconstruction and return-to-sport programmes.</p><div class="team-tags"><span class="team-tag">ACL Rehab</span><span class="team-tag">Athletes</span><span class="team-tag">Performance</span></div></div></div>
+      <div class="team-card"><div class="team-3d"><canvas id="c-t3"></canvas></div><div class="team-info"><h3>Dr. Nina Petrov</h3><div class="role">Neurological Physio · PhD</div><p class="bio">Doctoral research in neurorehabilitation. Published author with extensive stroke and Parkinson's disease rehabilitation experience.</p><div class="team-tags"><span class="team-tag">Neurology</span><span class="team-tag">Stroke</span><span class="team-tag">Research</span></div></div></div>
+      <div class="team-card"><div class="team-3d"><canvas id="c-t4"></canvas></div><div class="team-info"><h3>Dr. Marcus Kim</h3><div class="role">Paediatric Specialist · MPT</div><p class="bio">Dedicated paediatric physiotherapist trained at Melbourne's Royal Children's Hospital, specialising in developmental delays.</p><div class="team-tags"><span class="team-tag">Paediatrics</span><span class="team-tag">Cerebral Palsy</span><span class="team-tag">Dev.</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:var(--gray-50)">
+  <div class="section-inner">
+    <div class="center">
+      <span class="section-tag">Patient Resources</span>
+      <h2 class="section-title">Education & Insights</h2>
+      <p class="section-sub">Empowering our patients with knowledge to support their rehabilitation journey.</p>
+    </div>
+    <div class="edu-layout">
+      <div class="edu-card"><div class="edu-3d"><canvas id="c-edu1"></canvas></div><div class="edu-body"><div class="edu-cat">Injury Prevention</div><h3>PEACE & LOVE Protocol: The Modern Approach to Soft Tissue Injury</h3><p>Modern evidence has updated how we approach soft tissue injuries. Discover why active recovery outperforms rest.</p><div class="edu-read">Read Article →</div></div></div>
+      <div class="edu-card"><div class="edu-3d"><canvas id="c-edu2"></canvas></div><div class="edu-body"><div class="edu-cat">Chronic Pain</div><h3>Pain Neuroscience: Why Pain Is Not Always a Damage Signal</h3><p>Groundbreaking research on the brain's role in chronic pain perception and what it means for your treatment.</p><div class="edu-read">Read Article →</div></div></div>
+      <div class="edu-card"><div class="edu-3d"><canvas id="c-edu3"></canvas></div><div class="edu-body"><div class="edu-cat">Workplace Health</div><h3>The Physiotherapist's Guide to Ergonomic Home Office Setup</h3><p>Simple, evidence-based adjustments to your workstation that can prevent neck, back, and wrist injuries.</p><div class="edu-read">Read Article →</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="center">
+      <span class="section-tag">Patient Stories</span>
+      <h2 class="section-title">Trusted by Thousands</h2>
+      <p class="section-sub">Real outcomes, real voices — here's what our patients say about their PhysioElite experience.</p>
+    </div>
+    <div class="testi-layout">
+      <div class="testi-3d"><canvas id="c-testi"></canvas></div>
+      <div class="testi-stack">
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"After my ACL surgery, I was told I might never play football again. The team at PhysioElite didn't just help me walk — they got me back on the pitch within 10 months. Truly world-class."</p><div class="testi-author"><div class="testi-av" style="background:#0d7c66">AH</div><div><div class="testi-name">Ahmed Hassan</div><div class="testi-detail">ACL Recovery · Dubai</div></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"Chronic lower back pain had affected my quality of life for 6 years. Within 12 sessions, I was 85% better. The diagnostic process and individualised plan made all the difference."</p><div class="testi-author"><div class="testi-av" style="background:#185fa5">SK</div><div><div class="testi-name">Sofia Karim</div><div class="testi-detail">Chronic Pain · London</div></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"My son has cerebral palsy and Dr. Kim's approach changed his life. The patience, expertise, and compassion shown by the paediatric team is unlike anything we've experienced elsewhere."</p><div class="testi-author"><div class="testi-av" style="background:#534ab7">LN</div><div><div class="testi-name">Linda Nwosu</div><div class="testi-detail">Paediatric Care · Lagos</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking-bg">
+  <div class="section-inner">
+    <div>
+      <span class="section-tag" style="background:rgba(13,124,102,0.2);color:var(--teal-light)">Get Started</span>
+      <h2 class="section-title why-title">Book Your Consultation</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:16px;line-height:1.7;margin-top:.5rem">Take the first step towards recovery. Our team will contact you within 24 hours to confirm your appointment.</p>
+    </div>
+    <div class="booking-layout">
+      <div class="booking-3d"><canvas id="c-booking"></canvas></div>
+      <div class="booking-form">
+        <div class="form-grid">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="e.g. James"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="e.g. Wilson"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+1 000 000 0000"></div>
+          <div class="form-group"><label>Select Specialist</label><select><option>Dr. Sarah Mitchell — Spinal & MSK</option><option>Dr. James Adeyemi — Sports Physio</option><option>Dr. Nina Petrov — Neurological</option><option>Dr. Marcus Kim — Paediatric</option><option>No preference</option></select></div>
+          <div class="form-group"><label>Preferred Date</label><input type="date"></div>
+          <div class="form-group full"><label>Describe Your Condition</label><textarea rows="3" placeholder="Please briefly describe your symptoms or what you'd like help with..."></textarea></div>
+        </div>
+        <div class="form-submit"><button class="btn-primary" style="font-size:16px;padding:14px 36px">Request Appointment →</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M12 2C8 2 5 5 5 9c0 2 .8 3.8 2 5l5 8 5-8c1.2-1.2 2-3 2-5 0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><span class="logo-text">Physio<span>Elite</span></span></a>
+        <p>International-standard physiotherapy clinic. Trusted by patients across 30+ countries for evidence-based, compassionate care.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><a href="#services">Sports Rehab</a><a href="#services">Post-Surgical Care</a><a href="#services">Spinal Health</a><a href="#services">Chronic Pain</a><a href="#services">Paediatric</a><a href="#services">Neurological</a></div>
+      <div class="footer-col"><h4>Clinic</h4><a href="#team">Our Team</a><a href="#education">Resources</a><a href="#testimonials">Reviews</a><a href="#booking">Book Online</a></div>
+      <div class="footer-col"><h4>Contact</h4><div class="footer-contact"><strong>📍 Address</strong>12 Harley Street<br>London, W1G 9PG<strong>📞 Phone</strong>+44 20 7946 0800<strong>📧 Email</strong>info@physioelite.clinic<strong>⏰ Hours</strong>Mon–Sat: 8am – 7pm</div></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 PhysioElite Advanced Physiotherapy Centre. All rights reserved.</p>
+      <div class="accreditations"><div class="accred-badge">ISO 9001</div><div class="accred-badge">HCPC Reg.</div><div class="accred-badge">CSP Member</div></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+function mk(id, buildFn, bg, camZ) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const p = canvas.parentElement;
+  const w = p.clientWidth || 300, h = p.clientHeight || 200;
+  canvas.width = w; canvas.height = h;
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+  renderer.setSize(w, h);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(bg, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 100);
+  camera.position.set(0, 0, camZ || 5);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const dl = new THREE.DirectionalLight(0xffffff, 0.9);
+  dl.position.set(5,8,5); scene.add(dl);
+  const pl = new THREE.PointLight(0x0fa888, 1.2, 30);
+  pl.position.set(-4,3,4); scene.add(pl);
+  let hov = false;
+  canvas.addEventListener('mouseenter', ()=>hov=true);
+  canvas.addEventListener('mouseleave', ()=>hov=false);
+  const obj = buildFn(THREE, scene);
+  (function loop() {
+    requestAnimationFrame(loop);
+    if (obj) { obj.rotation.y += hov ? 0.025 : 0.007; if(obj.tick) obj.tick(); }
+    renderer.render(scene, camera);
+  })();
+}
+
+// ── HERO: full human skeleton ──────────────────────────────────────
+// Delay hero init to ensure layout is complete
+setTimeout(()=>mk('c-hero', (T, sc) => {
+  const g = new T.Group();
+  const bM = new T.MeshPhongMaterial({color:0xf0e6d3, shininess:80});
+  const jM = new T.MeshPhongMaterial({color:0x5ecdb0, shininess:60});
+  const cM = new T.MeshPhongMaterial({color:0xc8e8ff, shininess:40, transparent:true, opacity:0.5});
+  // skull
+  const skull = new T.Mesh(new T.SphereGeometry(0.38,20,20), bM);
+  skull.position.set(0,3.1,0); skull.scale.set(1,1.1,0.9); g.add(skull);
+  // jaw
+  const jaw = new T.Mesh(new T.BoxGeometry(0.5,0.16,0.36), bM);
+  jaw.position.set(0,2.78,0.12); g.add(jaw);
+  // neck
+  const neck = new T.Mesh(new T.CylinderGeometry(0.12,0.14,0.32,10), bM);
+  neck.position.set(0,2.62,0); g.add(neck);
+  // ribcage
+  for(let r=0;r<6;r++){
+    const ry = 2.2 - r*0.22;
+    const rx = 0.35+r*0.03;
+    [-1,1].forEach(s=>{
+      const rib = new T.Mesh(new T.TorusGeometry(rx,0.04,6,18,Math.PI), bM);
+      rib.rotation.x = Math.PI/2; rib.rotation.z = s>0?0.1:-0.1;
+      rib.position.set(0,ry,0); g.add(rib);
+    });
+  }
+  // sternum
+  const ster = new T.Mesh(new T.BoxGeometry(0.1,1.15,0.08), bM);
+  ster.position.set(0,1.85,0.36); g.add(ster);
+  // spine (simplified)
+  for(let v=0;v<14;v++){
+    const sv = new T.Mesh(new T.CylinderGeometry(0.1,0.12,0.14,8), bM);
+    sv.position.set(0, 2.5-v*0.22, 0); g.add(sv);
+  }
+  // pelvis
+  const pelvis = new T.Mesh(new T.SphereGeometry(0.52,16,8), bM);
+  pelvis.scale.set(1.1,0.48,0.8); pelvis.position.set(0,-0.48,0); g.add(pelvis);
+  // hips
+  [-1,1].forEach(s=>{
+    const hip = new T.Mesh(new T.SphereGeometry(0.2,12,12), jM);
+    hip.position.set(s*0.54,-0.72,0); g.add(hip);
+    // femur
+    const fem = new T.Mesh(new T.CylinderGeometry(0.1,0.12,1.1,10), bM);
+    fem.position.set(s*0.54,-1.32,0); g.add(fem);
+    // knee
+    const kn = new T.Mesh(new T.SphereGeometry(0.15,12,12), jM);
+    kn.position.set(s*0.54,-1.9,0); g.add(kn);
+    // tibia
+    const tib = new T.Mesh(new T.CylinderGeometry(0.08,0.1,1.0,10), bM);
+    tib.position.set(s*0.54,-2.44,0); g.add(tib);
+    // ankle
+    const ank = new T.Mesh(new T.SphereGeometry(0.12,10,10), jM);
+    ank.position.set(s*0.54,-2.96,0); g.add(ank);
+    // foot
+    const ft = new T.Mesh(new T.BoxGeometry(0.18,0.1,0.42), bM);
+    ft.position.set(s*0.54,-3.06,0.15); g.add(ft);
+    // shoulder
+    const sh = new T.Mesh(new T.SphereGeometry(0.18,12,12), jM);
+    sh.position.set(s*0.72,2.4,0); g.add(sh);
+    // humerus
+    const hum = new T.Mesh(new T.CylinderGeometry(0.08,0.1,0.85,10), bM);
+    hum.rotation.z = s*0.35; hum.position.set(s*0.95,1.9,0); g.add(hum);
+    // elbow
+    const el = new T.Mesh(new T.SphereGeometry(0.12,10,10), jM);
+    el.position.set(s*1.18,1.4,0); g.add(el);
+    // forearm
+    const fa = new T.Mesh(new T.CylinderGeometry(0.07,0.09,0.75,10), bM);
+    fa.rotation.z = s*0.5; fa.position.set(s*1.35,0.98,0); g.add(fa);
+    // hand
+    const hd = new T.Mesh(new T.BoxGeometry(0.14,0.2,0.08), bM);
+    hd.position.set(s*1.48,0.58,0); g.add(hd);
+  });
+  // scan circle
+  const ring = new T.Mesh(new T.TorusGeometry(1.1,0.03,8,48), new T.MeshBasicMaterial({color:0x0fa888}));
+  ring.position.set(0,0,0); g.add(ring);
+  let t=0;
+  g.tick = ()=>{ t+=0.03; ring.position.y = Math.sin(t)*2.8; };
+  g.scale.set(0.85,0.85,0.85);
+  sc.add(g); return g;
+}, 0x060e1c, 7), 300);
+
+// ── SERVICE: knee joint ─────────────────────────────────────────────
+mk('c-sports', (T,sc)=>{
+  const g=new T.Group();
+  const bM=new T.MeshPhongMaterial({color:0xf0e6d3,shininess:80});
+  const cM=new T.MeshPhongMaterial({color:0x4ec9b0,shininess:60,transparent:true,opacity:.85});
+  const fem=new T.Mesh(new T.CylinderGeometry(0.18,0.22,1.4,16),bM); fem.position.set(0,1.1,0); fem.rotation.z=0.15; g.add(fem);
+  const fh=new T.Mesh(new T.SphereGeometry(0.32,16,16),bM); fh.position.set(0.1,1.85,0); g.add(fh);
+  const tib=new T.Mesh(new T.CylinderGeometry(0.15,0.18,1.4,16),bM); tib.position.set(0,-1.1,0); tib.rotation.z=-0.1; g.add(tib);
+  const cart=new T.Mesh(new T.SphereGeometry(0.38,24,24),cM); cart.scale.set(1,.6,1); g.add(cart);
+  const pat=new T.Mesh(new T.SphereGeometry(0.18,12,12),bM); pat.position.set(0.35,0.15,0); g.add(pat);
+  sc.add(g); return g;
+},0xeaf7f3);
+
+mk('c-surgical', (T,sc)=>{
+  const g=new T.Group();
+  const bM=new T.MeshPhongMaterial({color:0xf5efe0,shininess:60});
+  const mM=new T.MeshPhongMaterial({color:0xa8c4d4,shininess:200,specular:0xffffff});
+  const mrM=new T.MeshPhongMaterial({color:0xf0c8a0,shininess:20});
+  g.add(new T.Mesh(new T.CylinderGeometry(.7,.7,2.8,32),bM));
+  g.add(new T.Mesh(new T.CylinderGeometry(.28,.28,2.82,16),mrM));
+  const sc2=new T.Mesh(new T.CylinderGeometry(.13,.1,2.6,8),mM); sc2.position.set(.35,0,.15); sc2.rotation.z=.3; g.add(sc2);
+  const sh=new T.Mesh(new T.CylinderGeometry(.22,.22,.12,8),mM); sh.position.set(.35+Math.sin(.3)*1.3,Math.cos(.3)*1.3,.15); g.add(sh);
+  const pl=new T.Mesh(new T.BoxGeometry(1.6,.1,.4),mM); pl.position.set(0,1.4,0); g.add(pl);
+  sc.add(g); return g;
+},0xeef4f8);
+
+mk('c-spine', (T,sc)=>{
+  const g=new T.Group();
+  const vM=new T.MeshPhongMaterial({color:0xf0e6d3,shininess:70});
+  const dM=new T.MeshPhongMaterial({color:0x88d8c0,shininess:40,transparent:true,opacity:.9});
+  for(let i=0;i<7;i++){
+    const y=(i-3)*.52, sz=.28+Math.sin(i/7*Math.PI)*.06;
+    const v=new T.Mesh(new T.CylinderGeometry(sz,sz,.28,16),vM); v.position.set(0,y,0); g.add(v);
+    const pr=new T.Mesh(new T.BoxGeometry(.08,.22,.38),vM); pr.position.set(0,y,-.38); g.add(pr);
+    [-1,1].forEach(s=>{ const tp=new T.Mesh(new T.CylinderGeometry(.05,.04,.36,8),vM); tp.rotation.z=Math.PI/2; tp.position.set(s*.5,y,-.1); g.add(tp); });
+    if(i<6){ const d=new T.Mesh(new T.CylinderGeometry(sz*.9,sz*.9,.18,16),dM); d.position.set(0,y+.26,0); g.add(d); }
+  }
+  sc.add(g); return g;
+},0xeaf7f3);
+
+mk('c-pain', (T,sc)=>{
+  const g=new T.Group();
+  const nM=new T.MeshPhongMaterial({color:0x7c5cbf,shininess:90,emissive:0x2a1a5e,emissiveIntensity:.2});
+  const lM=new T.LineBasicMaterial({color:0xb89de8,transparent:true,opacity:.5});
+  const brain=new T.Mesh(new T.SphereGeometry(1.1,32,32),new T.MeshPhongMaterial({color:0xc4a8e8,shininess:50,transparent:true,opacity:.35}));
+  brain.scale.set(1,.82,.75); g.add(brain);
+  const ns=[[0,0,0],[.6,.4,.2],[-.5,.3,-.1],[.2,-.5,.3],[-.3,-.4,.4],[.7,-.2,-.2],[-.6,-.1,.35],[0,.7,-.3]];
+  ns.forEach(([x,y,z],i)=>{ const r=i===0?.18:.09+Math.random()*.06; const n=new T.Mesh(new T.SphereGeometry(r,12,12),nM); n.position.set(x,y,z); g.add(n); });
+  ns.slice(1).forEach(([x,y,z])=>{ const pts=[new T.Vector3(0,0,0),new T.Vector3(x,y,z)]; g.add(new T.Line(new T.BufferGeometry().setFromPoints(pts),lM)); });
+  sc.add(g); return g;
+},0xf0ecf8);
+
+mk('c-paeds', (T,sc)=>{
+  const g=new T.Group();
+  const m=new T.MeshPhongMaterial({color:0x0d7c66,shininess:80});
+  const jm=new T.MeshPhongMaterial({color:0x5ecdb0,shininess:60});
+  const hd=new T.Mesh(new T.SphereGeometry(.42,16,16),m); hd.position.set(0,1.55,0); g.add(hd);
+  const tr=new T.Mesh(new T.CylinderGeometry(.28,.24,1.0,16),m); tr.position.set(0,.65,0); g.add(tr);
+  const pe=new T.Mesh(new T.SphereGeometry(.32,16,8),m); pe.scale.set(1,.5,.7); pe.position.set(0,.1,0); g.add(pe);
+  [[-.52,.9],[.52,.9]].forEach(([x,y])=>{ const a=new T.Mesh(new T.CylinderGeometry(.09,.08,.75,10),m); a.rotation.z=x>0?-.4:.4; a.position.set(x,y,0); g.add(a); const e=new T.Mesh(new T.SphereGeometry(.11,10,10),jm); e.position.set(x*1.15,y-.4,0); g.add(e); const f=new T.Mesh(new T.CylinderGeometry(.08,.07,.65,10),m); f.rotation.z=x>0?-.6:.6; f.position.set(x*1.3,y-.72,0); g.add(f); });
+  [[-.22,-.28],[.22,-.28]].forEach(([x,y])=>{ const th=new T.Mesh(new T.CylinderGeometry(.13,.12,.85,12),m); th.position.set(x,y-.42,0); g.add(th); const kn=new T.Mesh(new T.SphereGeometry(.14,10,10),jm); kn.position.set(x,y-.88,0); g.add(kn); const sh=new T.Mesh(new T.CylinderGeometry(.1,.09,.8,12),m); sh.position.set(x,y-1.28,0); g.add(sh); });
+  g.scale.set(.88,.88,.88); sc.add(g); return g;
+},0xe6f7f3);
+
+mk('c-neuro', (T,sc)=>{
+  const g=new T.Group();
+  const lM=new T.MeshPhongMaterial({color:0x185fa5,shininess:60,transparent:true,opacity:.85});
+  const rM=new T.MeshPhongMaterial({color:0x2478c0,shininess:60,transparent:true,opacity:.85});
+  const l=new T.Mesh(new T.SphereGeometry(.95,32,32),lM); l.scale.set(.95,.85,.8); l.position.set(-.22,.1,0); g.add(l);
+  const r=new T.Mesh(new T.SphereGeometry(.95,32,32),rM); r.scale.set(.95,.85,.8); r.position.set(.22,.1,0); g.add(r);
+  const st=new T.Mesh(new T.CylinderGeometry(.18,.22,.7,12),new T.MeshPhongMaterial({color:0x0d5a9e})); st.position.set(0,-.95,0); g.add(st);
+  const cb=new T.Mesh(new T.SphereGeometry(.45,16,16),new T.MeshPhongMaterial({color:0x1466a8})); cb.scale.set(1.1,.7,.75); cb.position.set(0,-.6,-.55); g.add(cb);
+  [[.7,.5,.3],[-.6,.6,-.2],[.3,.8,.5],[-.4,.3,.6]].forEach(([x,y,z])=>{ const sp=new T.Mesh(new T.SphereGeometry(.07,8,8),new T.MeshPhongMaterial({color:0x5ecdb0,emissive:0x2a9a80,emissiveIntensity:.5})); sp.position.set(x,y,z); g.add(sp); });
+  sc.add(g); return g;
+},0xe8f1fb);
+
+// ── WHY US: biomechanical gait analysis ────────────────────────────
+mk('c-why', (T,sc)=>{
+  const g=new T.Group();
+  const bM=new T.MeshPhongMaterial({color:0x1a3a5c,shininess:60});
+  const jM=new T.MeshPhongMaterial({color:0x0fa888,shininess:100,emissive:0x0d7c66,emissiveIntensity:.3});
+  const lM=new T.LineBasicMaterial({color:0x0fa888,transparent:true,opacity:.4});
+  // treadmill base
+  const base=new T.Mesh(new T.BoxGeometry(3.5,.15,1.4),new T.MeshPhongMaterial({color:0x0d1f35})); base.position.set(0,-2.2,0); g.add(base);
+  const belt=new T.Mesh(new T.BoxGeometry(3.2,.06,1.1),new T.MeshPhongMaterial({color:0x162840})); belt.position.set(0,-2.12,0); g.add(belt);
+  // walking figure
+  const fig=new T.Group();
+  // torso
+  const tr=new T.Mesh(new T.CylinderGeometry(.22,.2,.9,12),bM); tr.position.set(0,.5,0); fig.add(tr);
+  // head
+  const hd=new T.Mesh(new T.SphereGeometry(.28,14,14),bM); hd.position.set(0,1.1,0); fig.add(hd);
+  // legs — walking pose
+  const legData=[[-.18,-.6,.35],[.18,-.35,-.25]];
+  legData.forEach(([x,y,rz])=>{
+    const th=new T.Mesh(new T.CylinderGeometry(.1,.1,.7,10),bM); th.rotation.z=rz; th.position.set(x,y,0); fig.add(th);
+    const kn=new T.Mesh(new T.SphereGeometry(.12,10,10),jM); kn.position.set(x+Math.sin(rz)*.35,y-.38,0); fig.add(kn);
+    const sh=new T.Mesh(new T.CylinderGeometry(.08,.08,.6,10),bM); sh.position.set(x+Math.sin(rz)*.38,y-.72,0); fig.add(sh);
+  });
+  // arms
+  [[-.3,.4,-.4],[.3,.4,.4]].forEach(([x,y,rz])=>{ const a=new T.Mesh(new T.CylinderGeometry(.07,.07,.55,8),bM); a.rotation.z=rz; a.position.set(x,y,0); fig.add(a); });
+  fig.position.set(0,-1.2,0);
+  g.add(fig);
+  // motion vector arrows
+  [[0,.8,0,.4],[.5,.4,.3,.3],[-.4,.2,.3,.25]].forEach(([x,y,len,sz])=>{
+    const arr=new T.Mesh(new T.ConeGeometry(sz*.15,sz*.4,6),new T.MeshBasicMaterial({color:0x0fa888}));
+    arr.position.set(x+len,y,0); g.add(arr);
+    const ln=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(x,y,0),new T.Vector3(x+len,y,0)]),lM);
+    g.add(ln);
+  });
+  // scan lines
+  for(let i=0;i<5;i++){
+    const sl=new T.Mesh(new T.BoxGeometry(3,.01,.01),new T.MeshBasicMaterial({color:0x0fa888,transparent:true,opacity:.3}));
+    sl.position.set(0,-2.1+i*.7,0); g.add(sl);
+  }
+  sc.add(g); return g;
+},0x070f1e,6);
+
+// ── TEAM: DNA helix per therapist ──────────────────────────────────
+function mkDNA(id, c1, c2, bg) {
+  mk(id, (T,sc)=>{
+    const g=new T.Group();
+    const m1=new T.MeshPhongMaterial({color:c1,shininess:80,emissive:c1,emissiveIntensity:.15});
+    const m2=new T.MeshPhongMaterial({color:c2,shininess:80,emissive:c2,emissiveIntensity:.15});
+    const lM=new T.LineBasicMaterial({color:0x888888,transparent:true,opacity:.35});
+    const n=28, r=0.5, h=3.2;
+    const pts1=[], pts2=[];
+    for(let i=0;i<n;i++){
+      const t=i/(n-1), angle=t*Math.PI*4, y=t*h-h/2;
+      pts1.push(new T.Vector3(Math.cos(angle)*r, y, Math.sin(angle)*r));
+      pts2.push(new T.Vector3(Math.cos(angle+Math.PI)*r, y, Math.sin(angle+Math.PI)*r));
+    }
+    // strand 1
+    const g1=new T.BufferGeometry().setFromPoints(pts1);
+    g.add(new T.Line(g1,new T.LineBasicMaterial({color:c1,linewidth:2})));
+    // strand 2
+    const g2=new T.BufferGeometry().setFromPoints(pts2);
+    g.add(new T.Line(g2,new T.LineBasicMaterial({color:c2,linewidth:2})));
+    // nodes + rungs
+    for(let i=0;i<n;i+=2){
+      const s1=new T.Mesh(new T.SphereGeometry(.09,8,8),m1); s1.position.copy(pts1[i]); g.add(s1);
+      const s2=new T.Mesh(new T.SphereGeometry(.09,8,8),m2); s2.position.copy(pts2[i]); g.add(s2);
+      const rung=new T.Line(new T.BufferGeometry().setFromPoints([pts1[i],pts2[i]]),lM); g.add(rung);
+    }
+    sc.add(g); return g;
+  }, bg, 4.5);
+}
+mkDNA('c-t1', 0x0d7c66, 0x5ecdb0, 0xeaf7f3);
+mkDNA('c-t2', 0x185fa5, 0x5ba0e0, 0xe8f1fb);
+mkDNA('c-t3', 0x7c5cbf, 0xb89de8, 0xf0ecf8);
+mkDNA('c-t4', 0xc9a84c, 0xf0d080, 0xfaf6e8);
+
+// ── EDUCATION ─────────────────────────────────────────────────────
+mk('c-edu1', (T,sc)=>{
+  const g=new T.Group();
+  // RICE vs PEACE — ice vs active movement
+  const iM=new T.MeshPhongMaterial({color:0x7ec8e3,shininess:100,transparent:true,opacity:.85});
+  const aM=new T.MeshPhongMaterial({color:0x0d7c66,shininess:80});
+  // ice pack
+  const ice=new T.Mesh(new T.BoxGeometry(1,.7,.6),iM); ice.position.set(-.7,0,0); g.add(ice);
+  for(let i=0;i<6;i++){ const c=new T.Mesh(new T.SphereGeometry(.08,8,8),new T.MeshPhongMaterial({color:0xffffff,transparent:true,opacity:.6})); c.position.set(-.7+(.2*(i%3)-.2),0,.32+(i<3?.01:-.01),); g.add(c); }
+  // arrow
+  const arr=new T.Mesh(new T.ConeGeometry(.15,.5,8),new T.MeshPhongMaterial({color:0xc9a84c})); arr.rotation.z=-Math.PI/2; arr.position.set(0,0,0); g.add(arr);
+  // leg in motion
+  const leg=new T.Mesh(new T.CylinderGeometry(.18,.15,.9,12),aM); leg.position.set(.75,0,0); leg.rotation.z=.4; g.add(leg);
+  const kn=new T.Mesh(new T.SphereGeometry(.22,12,12),new T.MeshPhongMaterial({color:0x5ecdb0})); kn.position.set(.75+Math.sin(.4)*.45,-.46,0); g.add(kn);
+  sc.add(g); return g;
+},0xeaf7f3,4);
+
+mk('c-edu2', (T,sc)=>{
+  const g=new T.Group();
+  // brain with pain signal visualization
+  const bM=new T.MeshPhongMaterial({color:0x9b72cf,shininess:50,transparent:true,opacity:.7});
+  const left=new T.Mesh(new T.SphereGeometry(.8,24,24),bM); left.scale.set(.9,.82,.75); left.position.set(-.18,.05,0); g.add(left);
+  const right=new T.Mesh(new T.SphereGeometry(.8,24,24),bM); right.scale.set(.9,.82,.75); right.position.set(.18,.05,0); g.add(right);
+  // pain signals
+  const sigM=new T.MeshPhongMaterial({color:0xff6b6b,emissive:0xcc3333,emissiveIntensity:.4,shininess:100});
+  const sigs=[[.6,.5,.3],[-.5,.6,-.2],[.2,.9,.4],[-.7,.1,.5]];
+  sigs.forEach(([x,y,z])=>{ const sp=new T.Mesh(new T.SphereGeometry(.1,8,8),sigM); sp.position.set(x,y,z); g.add(sp); const ln=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(0,0,0),new T.Vector3(x,y,z)]),new T.LineBasicMaterial({color:0xff6b6b,transparent:true,opacity:.4})); g.add(ln); });
+  sc.add(g); return g;
+},0xf5f0ff,4);
+
+mk('c-edu3', (T,sc)=>{
+  const g=new T.Group();
+  const dkM=new T.MeshPhongMaterial({color:0x2d3a4a,shininess:40});
+  const scM=new T.MeshPhongMaterial({color:0x5ba0e0,shininess:80});
+  const bM=new T.MeshPhongMaterial({color:0xf0e6d3,shininess:60});
+  // desk
+  const desk=new T.Mesh(new T.BoxGeometry(2.4,.1,1.2),dkM); desk.position.set(0,-.2,0); g.add(desk);
+  const leg1=new T.Mesh(new T.BoxGeometry(.08,1,.08),dkM); leg1.position.set(-1.1,-.7,.5); g.add(leg1);
+  const leg2=new T.Mesh(new T.BoxGeometry(.08,1,.08),dkM); leg2.position.set(1.1,-.7,.5); g.add(leg2);
+  // monitor
+  const mon=new T.Mesh(new T.BoxGeometry(1.2,.85,.06),scM); mon.position.set(-.3,.55,-.3); g.add(mon);
+  const mBase=new T.Mesh(new T.BoxGeometry(.3,.06,.25),dkM); mBase.position.set(-.3,.1,-.3); g.add(mBase);
+  // sitting spine (good posture)
+  const sp=new T.Mesh(new T.CylinderGeometry(.07,.09,.8,10),bM); sp.position.set(.65,.35,0); g.add(sp);
+  const hd=new T.Mesh(new T.SphereGeometry(.2,12,12),bM); hd.position.set(.65,1.0,0); g.add(hd);
+  // posture alignment line
+  const lM=new T.LineBasicMaterial({color:0x0fa888,transparent:true,opacity:.7});
+  g.add(new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(.65,1.15,0),new T.Vector3(.65,-.15,0)]),lM));
+  sc.add(g); return g;
+},0xeef4f8,5);
+
+// ── TESTIMONIALS: world globe ──────────────────────────────────────
+mk('c-testi', (T,sc)=>{
+  const g=new T.Group();
+  // globe
+  const globeM=new T.MeshPhongMaterial({color:0x1a3a6c,shininess:40,transparent:true,opacity:.9});
+  const globe=new T.Mesh(new T.SphereGeometry(1.6,32,32),globeM); g.add(globe);
+  // wireframe overlay
+  const wM=new T.MeshBasicMaterial({color:0x2a5fa0,wireframe:true,transparent:true,opacity:.2});
+  g.add(new T.Mesh(new T.SphereGeometry(1.61,18,18),wM));
+  // continent blobs (approximate)
+  const cM=new T.MeshPhongMaterial({color:0x2d7a4e,shininess:30});
+  const continents=[
+    {lat:51,lng:-1,w:.6,h:.3},  // UK
+    {lat:25,lng:55,w:.35,h:.25}, // UAE
+    {lat:6,lng:8,w:.45,h:.35},  // Nigeria
+    {lat:35,lng:105,w:.7,h:.45}, // China/Asia
+    {lat:40,lng:-98,w:.7,h:.45}, // USA
+    {lat:-14,lng:-51,w:.5,h:.45},// Brazil
+    {lat:-25,lng:134,w:.45,h:.35}// Australia
+  ];
+  continents.forEach(({lat,lng,w,h})=>{
+    const phi=(90-lat)*Math.PI/180, theta=(lng+180)*Math.PI/180;
+    const x=1.62*Math.sin(phi)*Math.cos(theta), y=1.62*Math.cos(phi), z=1.62*Math.sin(phi)*Math.sin(theta);
+    const c=new T.Mesh(new T.SphereGeometry(.18,8,8),cM); c.scale.set(w,h,.2); c.position.set(x,y,z); c.lookAt(0,0,0); g.add(c);
+  });
+  // patient location pins
+  const pinM=new T.MeshBasicMaterial({color:0x0fa888});
+  const pins=[[25,55],[51,-1],[6,8]]; // Dubai, London, Lagos
+  pins.forEach(([lat,lng])=>{
+    const phi=(90-lat)*Math.PI/180, theta=(lng+180)*Math.PI/180;
+    const x=1.68*Math.sin(phi)*Math.cos(theta), y=1.68*Math.cos(phi), z=1.68*Math.sin(phi)*Math.sin(theta);
+    const pin=new T.Mesh(new T.SphereGeometry(.09,8,8),pinM); pin.position.set(x,y,z); g.add(pin);
+    // pulse ring
+    const ring=new T.Mesh(new T.TorusGeometry(.16,.02,6,20),new T.MeshBasicMaterial({color:0x0fa888,transparent:true,opacity:.5}));
+    ring.position.set(x,y,z); ring.lookAt(0,0,0); g.add(ring);
+  });
+  // atmosphere glow
+  const atmM=new T.MeshPhongMaterial({color:0x3a7bd5,transparent:true,opacity:.08,side:T.BackSide});
+  g.add(new T.Mesh(new T.SphereGeometry(1.9,32,32),atmM));
+  sc.add(g); return g;
+},0x060e1c,5);
+
+// ── BOOKING: 3D clinic cross-section ──────────────────────────────
+mk('c-booking', (T,sc)=>{
+  const g=new T.Group();
+  const wallM=new T.MeshPhongMaterial({color:0x0d2244,shininess:20});
+  const floorM=new T.MeshPhongMaterial({color:0x0a1a35,shininess:60});
+  const tealM=new T.MeshPhongMaterial({color:0x0d7c66,shininess:80,emissive:0x0d7c66,emissiveIntensity:.2});
+  const eqM=new T.MeshPhongMaterial({color:0x1a3a5c,shininess:80});
+  // floor
+  const fl=new T.Mesh(new T.BoxGeometry(4,0.1,2.5),floorM); fl.position.set(0,-1.6,0); g.add(fl);
+  // back wall
+  const bw=new T.Mesh(new T.BoxGeometry(4,.1,2.8),wallM); bw.rotation.x=Math.PI/2; bw.position.set(0,.5,-1.25); g.add(bw);
+  // treatment table
+  const tbl=new T.Mesh(new T.BoxGeometry(1.6,.12,.7),eqM); tbl.position.set(-.5,-1.1,0); g.add(tbl);
+  const tblLeg1=new T.Mesh(new T.CylinderGeometry(.04,.04,.5,8),eqM); tblLeg1.position.set(-1.1,-1.36,0); g.add(tblLeg1);
+  const tblLeg2=new T.Mesh(new T.CylinderGeometry(.04,.04,.5,8),eqM); tblLeg2.position.set(.1,-1.36,0); g.add(tblLeg2);
+  // patient on table
+  const pM=new T.MeshPhongMaterial({color:0xf0e6d3,shininess:50});
+  const body=new T.Mesh(new T.CylinderGeometry(.16,.14,.9,12),pM); body.rotation.z=Math.PI/2; body.position.set(-.5,-1.0,0); g.add(body);
+  const phd=new T.Mesh(new T.SphereGeometry(.2,12,12),pM); phd.position.set(-.02,-1.0,0); g.add(phd);
+  // ultrasound machine
+  const us=new T.Mesh(new T.BoxGeometry(.5,.7,.35),eqM); us.position.set(.9,-.95,0); g.add(us);
+  const screen=new T.Mesh(new T.BoxGeometry(.38,.42,.02),tealM); screen.position.set(.9,-.82,.18); g.add(screen);
+  // hanging light
+  const lh=new T.Mesh(new T.CylinderGeometry(.18,.12,.2,16),new T.MeshPhongMaterial({color:0xd4af37,shininess:200}));
+  lh.position.set(-.5,1.2,0); g.add(lh);
+  const spotLight=new T.PointLight(0xfffacd,.8,3); spotLight.position.set(-.5,1.0,0); g.add(spotLight);
+  // cross symbol on wall
+  const cx=new T.Mesh(new T.BoxGeometry(.08,.6,.04),tealM); cx.position.set(1.4,.5,-1.2); g.add(cx);
+  const cy=new T.Mesh(new T.BoxGeometry(.6,.08,.04),tealM); cy.position.set(1.4,.5,-1.2); g.add(cy);
+  g.rotation.y = .3;
+  sc.add(g); return g;
+},0x060e1c,7);
+
+// fade-in animation
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
+}),{threshold:.1});
+document.querySelectorAll('.service-card,.team-card,.testi-card,.edu-card,.why-item').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition='opacity .5s ease,transform .5s ease,box-shadow .25s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
